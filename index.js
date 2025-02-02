@@ -50,4 +50,18 @@ fetch("https://api.coingecko.com/api/v3/coins/dogecoin")
 
 
 /*----------------------- Start Open Weather API-----------------------------------------*/    
+navigator.geolocation.getCurrentPosition(position => {
+    fetch(`https://openweathermap/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=imperial`)
+        .then(res => {
+            if (!res.ok) {
+                throw Error("Weather data not available")
+            }
+            return res.json()
+        })
+        .then(data => {
+            console.log(data)
+        })
+        .catch(err => console.error(err))
+});
+
 /*-----------------------End Open Weather API---------------------------------------------*/    
